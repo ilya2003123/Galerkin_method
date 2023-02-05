@@ -37,7 +37,7 @@ public:
 
 	typedef operations::Multiply<operations::Multiply<functions::Const, functions::Sinus<F>>,
 		typename Derivative<F>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return ((functions::Const(-1) * utils::Sin(m_f)) * m_df.expression());
 	}

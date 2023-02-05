@@ -39,7 +39,7 @@ public:
 	// т.к. при "прочтении" он "<", ">" представляет как знак меньше или больше соответственно
 
 	typedef operations::Add<typename Derivative<F1>::Type, typename Derivative<F2>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return m_df1.expression() + m_df2.expression();
 	}
@@ -71,7 +71,7 @@ public:
 	Derivative<F1> m_df1;
 
 	typedef typename Derivative<F1>::Type Type;  // здесь мы оставляем только первый член выражения, потому что
-	Type expression() const                     // второй является константой
+	Type expression()                     // второй является константой
 	{
 		return m_df1.expression();
 	}
@@ -101,7 +101,7 @@ public:
 	Derivative<F2> m_df2;
 
 	typedef typename Derivative<F2>::Type Type;   // Здесь второй
-	Type expression() const
+	Type expression()
 	{
 		return m_df2.expression();
 	}
@@ -121,7 +121,7 @@ public:
 	}
 
 	typedef typename functions::Const Type;   // здесь две константы, ответ очевиден
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}
@@ -142,7 +142,7 @@ public:
 	}
 
 	typedef functions::Const Type;  // Две функции "Simple" Ответ конечно же два!
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(2);
 	}

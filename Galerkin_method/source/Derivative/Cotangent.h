@@ -37,7 +37,7 @@ public:
 
 	typedef operations::Divide<operations::Multiply<functions::Const, typename Derivative<F>::Type>,
 		operations::Multiply<functions::Sinus<F>, functions::Sinus<F>>> Type;
-	Type expression() const
+	Type expression()
 	{
 		return (functions::Const(-1) * m_df.expression() / (utils::Sin(m_f) * utils::Sin(m_f)));
 	}

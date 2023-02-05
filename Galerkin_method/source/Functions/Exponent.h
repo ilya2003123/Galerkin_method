@@ -10,7 +10,7 @@ namespace functions // Ну тут уж слов нет
 	{
 	public:  // Закрепим, обзываю свой класс показательной функции в которую передаю тип F, Type-ом
 		typedef Exponent<F> Type;  
-		Exponent(double base, const F& f)
+		Exponent(const double base, const F& f)
 			:m_base(base), m_f(f)
 		{
 		}

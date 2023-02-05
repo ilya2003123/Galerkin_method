@@ -37,7 +37,7 @@ public:
 
 	typedef operations::Divide<typename Derivative<F>::Type, operations::Multiply<functions::Cosinus<F>,
 		functions::Cosinus<F>>> Type;
-	Type expression() const
+	Type expression()
 	{
 		return (m_df.expression() / (utils::Cos(m_f) * utils::Cos(m_f)));
 	}

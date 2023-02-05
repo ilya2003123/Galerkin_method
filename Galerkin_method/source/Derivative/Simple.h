@@ -15,7 +15,7 @@ public:
 		return 1;
 	}
 
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(1);   // тип возвращаемый будет Const и возвращаем мы Const, всё честно
 	}

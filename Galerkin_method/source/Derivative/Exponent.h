@@ -39,7 +39,7 @@ public:
 
 	typedef operations::Multiply<operations::Multiply<functions::Exponent<F>, functions::Const>,
 		typename Derivative<F>::Type> Type;
-	Type expression()
+	Type expression() 
 	{
 		return (utils::Exp(m_base, m_f) * m_factor * m_df.expression());
 	}

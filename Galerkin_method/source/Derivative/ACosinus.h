@@ -4,6 +4,7 @@
 #include "../Functions/functions.h"
 #include "General.h"
 #include "../Utils/Utils.h"
+#include <typeinfo>
 
 template <typename F>
 class Derivative<functions::ACosinus<F>> : public functions::Abstract
@@ -35,13 +36,12 @@ public:
 	F m_f;
 	Derivative<F> m_df;
 
-	// Вот это типчик :D
-
 	typedef operations::Divide<operations::Multiply<functions::Const, typename Derivative<F>::Type>,
 		functions::Power<operations::Subtract<functions::Const, operations::Multiply<F, F>>>> Type;
-	Type expression() const
+	Type expression()
 	{
-		return ((functions::Const(-1) * m_df.expression()) / utils::Sqrt(1 - m_f * m_f));
+		operations::Subtract<functions::Const, operations::Multiply<F, F>> a = (1 - m_f * m_f);
+		return ((functions::Const(-1) * m_df.expression()) / utils::Sqrt(a));
 	}
 
 };

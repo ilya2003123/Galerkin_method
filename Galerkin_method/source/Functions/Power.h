@@ -10,7 +10,7 @@ namespace functions  // тот же самый namespace
 	{
 	public:   // обязательно всё public. Ошибки сыпятся!
 		typedef Power<F> Type;  // Обзываю свою степень в которую передал какой-то тип Type-ом, тоже тёска
-		Power(const F& f, double n)   // Продолжаю эпоху минимализма
+		Power(const F& f, const double n)   // Продолжаю эпоху минимализма
 			: m_f(f), m_n(n)
 		{
 		}

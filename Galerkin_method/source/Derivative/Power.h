@@ -42,7 +42,7 @@ public:
 
 	typedef operations::Multiply<operations::Multiply<functions::Const, functions::Power<F>>,
 		typename Derivative<F>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return ((functions::Const(m_n) * utils::Pow(m_f, m_n - 1)) * m_df.expression());
 	}
@@ -63,7 +63,7 @@ public:
 	}
 
 	typedef functions::Const Type;
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}
@@ -87,7 +87,7 @@ public:
 
 
 	typedef operations::Multiply<functions::Const, functions::Power<functions::Simple>> Type;
-	Type expression() const
+	Type expression()
 	{
 		return operations::Multiply<functions::Const, functions::Power<functions::Simple>>
 			(functions::Const(m_n), utils::Pow(utils::X, m_n - 1));

@@ -50,7 +50,7 @@ public:
 
 	typedef operations::Add<operations::Multiply<typename Derivative<F1>::Type, F2>,
 		operations::Multiply<F1, typename Derivative <F2>::Type>> Type;
-	Type expression() const
+	Type expression()
 	{
 		return ((m_df1.expression() * m_f2) + (m_f1 * m_df2.expression()));
 	}
@@ -89,7 +89,7 @@ public:
 	functions::Const m_f2;
 
 	typedef operations::Multiply<functions::Const, typename Derivative<F1>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return (m_f2 * m_df1.expression());
 	}
@@ -129,7 +129,7 @@ public:
 	Derivative<F2> m_df2;
 
 	typedef operations::Multiply<functions::Const, typename Derivative<F2>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return (m_f1 * m_df2.expression());
 	}
@@ -150,7 +150,7 @@ public:
 	}
 
 	typedef functions::Const Type;
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}

@@ -16,3 +16,4 @@
 #include "Sin.h"
 #include "Tangent.h"
 #include "Abstract.h"
+#include "Exponent_Power.h"

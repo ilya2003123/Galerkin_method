@@ -37,7 +37,7 @@ public:
 	Derivative<F2> m_df2;
 
 	typedef operations::Subtract<typename Derivative<F1>::Type, typename Derivative<F2>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return m_df1.expression() - m_df2.expression();
 	}
@@ -69,7 +69,7 @@ public:
 	Derivative<F1> m_df1;
 
 	typedef typename Derivative<F1>::Type Type;
-	Type expression() const
+	Type expression()
 	{
 		return m_df1.expression();
 	}
@@ -99,7 +99,7 @@ public:
 	Derivative<F2> m_df2;
 
 	typedef typename Derivative<F2>::Type Type;
-	Type expression() const
+	Type expression()
 	{
 		return (functions::Const(-1) * m_df2.expression());
 	}
@@ -119,7 +119,7 @@ public:
 	}
 
 	typedef typename functions::Const Type;
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}
@@ -140,7 +140,7 @@ public:
 	}
 
 	typedef functions::Const Type;
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}

@@ -1,7 +1,5 @@
 #pragma once
 
-// —амый крупный и бес€чий блок, сколько дней и ночей проведенно с ним
-
 #include "AddUtil.h"
 #include "DivideUtil.h"
 #include "MultiplyUtil.h"
@@ -21,3 +19,4 @@
 #include "SinusUtil.h"
 #include "TangentUtil.h"
 #include "UnarMinusUtil.h"
+#include "Exponent_PowerUtil.h"

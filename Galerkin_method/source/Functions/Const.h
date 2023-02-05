@@ -8,12 +8,12 @@ namespace functions   // Свои функции желательно облеплять в namespace, вдруг у 
 	{
 	public:
 		typedef Const Type;  // Обзываю Const Type-ом, понадобится дальше
-		Const(double x)  // Обычный минималистичный конструктор, для типа double
+		Const(const double x)  // Обычный минималистичный конструктор, для типа double
 			: m_const(x)
 		{
 		}
 
-		Const(int x)   // Тоже конструктор, только целочисленный
+		Const(const int x)   // Тоже конструктор, только целочисленный
 			: m_const(x)
 		{
 		}

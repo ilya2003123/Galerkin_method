@@ -15,7 +15,7 @@ public:
 		return 0;
 	}
 
-	Type expression() const
+	Type expression()
 	{
 		return functions::Const(0);
 	}

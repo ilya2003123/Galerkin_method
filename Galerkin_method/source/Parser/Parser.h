@@ -175,19 +175,10 @@ Expression Parser::parse_binary_expression(int min_priority)
 			left_expr = Expression(op, new operations::Multiply(left_expr.func, right_expr.func));
 		else if (op == "/")
 			left_expr = Expression(op, new operations::Divide(left_expr.func, right_expr.func));
-		else if (op == ",")
-		{
-			if (std::isdigit(*(left_expr.token.c_str())))
-				left_expr = Expression(op, stod(left_expr.token), right_expr.func);
-			else if (std::isdigit(*(right_expr.token.c_str())))
-				left_expr = Expression(op, stod(right_expr.token), left_expr.func);
-			else														
-				left_expr = Expression(op, left_expr.func, right_expr.func);
-		}																	
+		else if (op == ",")														
+			left_expr = Expression(op, left_expr.func, right_expr.func);																
 		else if (op == "^")
-		{
 			left_expr = Expression(op, new functions::Exponent_Power(left_expr.func, right_expr.func));
-		}
 		else
 			left_expr = Expression(op, left_expr, right_expr);
 	}

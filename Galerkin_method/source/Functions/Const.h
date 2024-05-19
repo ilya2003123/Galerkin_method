@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Abstract.h"
+#include <sstream>
 
 namespace functions   // Свои функции желательно облеплять в namespace, вдруг у какой-то функции
 {					  // будет такое же название O_o
@@ -29,7 +30,19 @@ namespace functions   // Свои функции желательно облеплять в namespace, вдруг у 
 			return m_const;
 		}
 
+		friend std::ostream& operator <<(std::ostream& out, Const& c);
+
+		/*bool operator==(const double& value) const { return m_const == value; }*/
+
 		double m_const;   // Минималистичная переменная, отвечающая за константу
 	};
+
+	std::ostream& operator<<(std::ostream& out, Const& c)
+	{
+		
+		//if( c.m_const != 1)
+		out << c.m_const;
+		return out;
+	}
 
 }

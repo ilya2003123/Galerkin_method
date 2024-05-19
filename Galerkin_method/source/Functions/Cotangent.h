@@ -5,6 +5,14 @@
 
 namespace functions
 {
+	template<typename F> class Cotangent;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, Cotangent<F>& function)
+	{
+		out << "ctg(" << function.m_f << ")";
+		return out;
+	}
+
 	template<typename F>
 	class Cotangent : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions
 			else
 				return (1 / tan(m_f(x)));
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, Cotangent<F>& function);
 
 		F m_f;
 

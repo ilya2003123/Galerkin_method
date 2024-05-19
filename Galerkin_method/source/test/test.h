@@ -16,14 +16,13 @@ void test()
 	auto dcos = derivative(cos);
 
 	std::string str1 = "exp(" + std::to_string(base) + ", (pow(x, 2) / 4))";
-	inputx = 1;
 
 	Parser p1(str1.c_str());
 	auto q1 = p1.parse();
-	auto result1 = eval(q1);
+	auto result1 = eval(q1, 1);
 	// std::cout << result1 << std::endl;
 
-	assert(result1 - exp(inputx) <= 1e-4);
+	assert(result1 - exp(1) <= 1e-4);
 
 	assert(Sin(0) == 0);
 	assert(Cos(0) == 1);

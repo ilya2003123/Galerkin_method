@@ -7,6 +7,14 @@
 
 namespace functions 
 {
+	template<typename F1, typename F2> class Logarithm;
+
+	template<typename F1, typename F2> std::ostream& operator<<(std::ostream& out, Logarithm<F1, F2>& function)
+	{
+		out << "log(" << function.m_f1 << ", " << function.m_f2 << ")";
+		return out;
+	}
+
 	template<typename F1, typename F2>   // Тут всё ясненько вроде
 	class Logarithm : public functions::Abstract
 	{
@@ -35,6 +43,8 @@ namespace functions
 			return fx * factor;
 			// Вот тут мы это и делаем, внимательно посмотрите чему равны переменные
 		}
+
+		friend std::ostream& operator << <F1, F2>(std::ostream& out, Logarithm<F1, F2>& function);
 
 		F1 m_f1;
 		F2 m_f2;

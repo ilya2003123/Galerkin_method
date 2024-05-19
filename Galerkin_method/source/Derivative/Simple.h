@@ -3,6 +3,7 @@
 #include"../Functions/functions.h"
 #include "General.h"
 
+
 template<>  // Пустые <> "скобочки" говорят нам о частичной специализации этого шаблона
 class Derivative<functions::Simple> : public functions::Abstract  
 {   // Грубо говоря, мы перегружаем класс наших производных, для Simple

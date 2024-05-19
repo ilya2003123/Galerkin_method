@@ -5,6 +5,14 @@
 
 namespace functions  // тот же самый namespace
 {
+	template<typename F> class Power;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, Power<F>& function)
+	{
+		out << "pow(" << function.m_f << ", " << function.m_n << ")";
+		return out;
+	}
+
 	template<typename F> // шаблончик, вот тут то и начинается веселье, передаю в него тип F (может быть любой)
 	class Power : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions  // тот же самый namespace
 			else
 				return pow(m_f(x), m_n);
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, Power<F>& function);
 
 		F m_f;        // Одна переменная типа F
 		double m_n;   // Вторая double

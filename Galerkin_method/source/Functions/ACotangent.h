@@ -5,6 +5,14 @@
 
 namespace functions
 {
+	template<typename F> class ACotangent;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, ACotangent<F>& function)
+	{
+		out << "actg(" << function.m_f << ")";
+		return out;
+	}
+
 	template<typename F>
 	class ACotangent : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions
 			else
 				return 1 / atan(m_f(x));
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, ACotangent<F>& function);
 
 		F m_f;
 

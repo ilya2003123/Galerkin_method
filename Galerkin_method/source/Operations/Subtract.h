@@ -1,9 +1,23 @@
 #pragma once
 
-#include "../Functions/Abstract.h"
+#include "../Functions/functions.h"
 
 namespace operations  // Ещё немножко таких namespace-ов
 {
+	
+	template<typename F1, typename F2> class Subtract;
+
+	template<typename F1, typename F2> std::ostream& operator<<(std::ostream& out, Subtract<F1, F2>& function)
+	{
+		/*if (function.m_f2 < 0)
+			out << function.m_f1 << "+" << function.m_f2;
+		else if (function.m_f2 == 0)
+			out << function.m_f1;
+		else*/
+			out << function.m_f1 << "-" << function.m_f2;
+		return out;
+	}
+
 	template<typename F1, typename F2>  // так же передаю в него 2 типа, вычитание же :D
 	class Subtract : public functions::Abstract
 	{
@@ -31,6 +45,8 @@ namespace operations  // Ещё немножко таких namespace-ов
 
 			return f1 - f2;
 		}
+
+		friend std::ostream& operator << <F1, F2>(std::ostream& out, Subtract<F1, F2>& function);
 
 		F1 m_f1;  // Переменные
 		F2 m_f2;

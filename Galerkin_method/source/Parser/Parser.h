@@ -11,9 +11,9 @@
 #include <cstring>
 #include <stdexcept>
 
-double inputx = 0;
+//double inputx = 0;
 
-struct Expression 
+struct Expression
 {
 	Expression(std::string token, functions::Abstract* f = nullptr) : token(token), func(f) {}
 	Expression(std::string token, Expression a) : token(token), args{ a } {}
@@ -30,11 +30,11 @@ struct Expression
 	double number = 0;
 };
 
-class Parser 
+class Parser
 {
 public:
 	explicit Parser(const char* input)
-		: input(input) 
+		: input(input)
 	{
 	}
 	Expression parse();
@@ -47,11 +47,11 @@ private:
 	const char* input;
 };
 
-std::string Parser::parse_token() 
+std::string Parser::parse_token()
 {
 	while (std::isspace(*input)) ++input;
 
-	if (std::isdigit(*input)) 
+	if (std::isdigit(*input))
 	{
 		std::string number;
 		while (std::isdigit(*input) || *input == '.') number.push_back(*input++);
@@ -61,9 +61,9 @@ std::string Parser::parse_token()
 	static const std::string tokens[] =
 	{ "+", "-", "*", "/", "acos", "sin", "cos", "(", ")", "x", "actg", "asin", "atg", "ctg", "sqrt",
 	"pow", "log", "exp", "sqr", "tg", ",", "dx", "^" };
-	for (auto& t : tokens) 
+	for (auto& t : tokens)
 	{
-		if (std::strncmp(input, t.c_str(), t.size()) == 0) 
+		if (std::strncmp(input, t.c_str(), t.size()) == 0)
 		{
 			input += t.size();
 			return t;
@@ -140,7 +140,7 @@ Expression Parser::parse_simple_expression()
 	return Expression(token, rightside);
 }
 
-int get_priority(const std::string& binary_op) 
+int get_priority(const std::string& binary_op)
 {
 	if (binary_op == "+") return 1;
 	if (binary_op == "-") return 1;
@@ -148,18 +148,18 @@ int get_priority(const std::string& binary_op)
 	if (binary_op == "/") return 2;
 	if (binary_op == ",") return 3;
 	if (binary_op == "^") return 4;
-						  return 0;
+	return 0;
 }
 
 Expression Parser::parse_binary_expression(int min_priority)
 {
 	auto left_expr = parse_simple_expression();
 
-	for (;;) 
+	for (;;)
 	{
 		auto op = parse_token();
 		auto priority = get_priority(op);
-		if (priority <= min_priority) 
+		if (priority <= min_priority)
 		{
 			input -= op.size();
 			return left_expr;
@@ -175,8 +175,8 @@ Expression Parser::parse_binary_expression(int min_priority)
 			left_expr = Expression(op, new operations::Multiply(left_expr.func, right_expr.func));
 		else if (op == "/")
 			left_expr = Expression(op, new operations::Divide(left_expr.func, right_expr.func));
-		else if (op == ",")														
-			left_expr = Expression(op, left_expr.func, right_expr.func);																
+		else if (op == ",")
+			left_expr = Expression(op, left_expr.func, right_expr.func);
 		else if (op == "^")
 			left_expr = Expression(op, new functions::Exponent_Power(left_expr.func, right_expr.func));
 		else
@@ -184,14 +184,14 @@ Expression Parser::parse_binary_expression(int min_priority)
 	}
 }
 
-Expression Parser::parse() 
+Expression Parser::parse()
 {
 	return parse_binary_expression(0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-double eval(const Expression& e) 
+double eval(const Expression& e, double inputx)
 {
 	auto y = e.func->operator()(inputx);
 

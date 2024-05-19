@@ -5,6 +5,14 @@
 
 namespace functions
 {
+	template<typename F> class ASinus;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, ASinus<F>& function)
+	{
+		out << "asin(" << function.m_f << ")";
+		return out;
+	}
+
 	template<typename F>
 	class ASinus : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions
 			else
 				return asin(m_f(x));
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, ASinus<F>& function);
 
 		F m_f;
 

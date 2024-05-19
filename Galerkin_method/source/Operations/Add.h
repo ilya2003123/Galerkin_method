@@ -1,9 +1,24 @@
 #pragma once
 
-#include "../Functions/Abstract.h"
+#include "../Functions/functions.h"
 
 namespace operations  // Ну тут уже немножко другой namespace, нововведения произошли очень быстро
 {
+
+	template<typename F1, typename F2> class Add;
+
+	template<typename F1, typename F2> std::ostream& operator<<(std::ostream& out, Add<F1, F2>& function)
+	{
+		if (function.m_f2 < 0.0)
+			out << function.m_f1 << function.m_f2;
+		else if (function.m_f2 == 0.0)
+			out << function.m_f1;
+		else 
+			out << function.m_f1 << "+" << function.m_f2;
+		return out;
+	}
+
+
 	template<typename F1, typename F2>  // тут передаём уже 2 класса! ну или же, по правильному сказать 2 типа
 	class Add : public functions::Abstract // Класс суммы
 	{
@@ -30,6 +45,8 @@ namespace operations  // Ну тут уже немножко другой namespace, нововведения прои
 
 			return f1 + f2;
 		}
+
+		friend std::ostream& operator << <F1, F2>(std::ostream& out, Add<F1, F2>& function);
 
 		F1 m_f1; // Одна переменная одного типа, вторая другого
 		F2 m_f2;

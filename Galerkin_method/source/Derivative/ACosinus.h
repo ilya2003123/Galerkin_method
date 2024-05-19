@@ -6,6 +6,14 @@
 #include "../Utils/Utils.h"
 #include <typeinfo>
 
+template<typename F> class Derivative < functions::ACosinus<F>>;
+
+template<typename F> std::ostream& operator<<(std::ostream& out, Derivative <functions::ACosinus<F>>& function)
+{
+	out << "(acos(" << function.m_f << "))'";
+	return out;
+}
+
 template <typename F>
 class Derivative<functions::ACosinus<F>> : public functions::Abstract
 {
@@ -32,6 +40,8 @@ public:
 
 		return (-dfx / sqrt(1 - fx * fx));
 	}
+
+	friend std::ostream& operator << <F>(std::ostream& out, Derivative<functions::ACosinus<F>>& function);
 
 	F m_f;
 	Derivative<F> m_df;

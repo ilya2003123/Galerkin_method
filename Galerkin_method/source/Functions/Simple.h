@@ -13,5 +13,13 @@ namespace functions  // Тот же самый namespace
 		{                                  // double передаю и double получаю, обязательно всё const!!!
 			return x;
 		}
+
+		friend std::ostream& operator<<(std::ostream& out, Simple& simple);
 	};
+
+	std::ostream& operator<<(std::ostream& out, Simple& simple)
+	{
+		out << "x";
+		return out;
+	}
 }

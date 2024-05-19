@@ -4,6 +4,20 @@
 
 namespace operations  // Ещё немножко таких namespace-ов
 {
+
+	template<typename F> class UnarMinus;
+
+	template<typename F>  std::ostream& operator<<(std::ostream& out, UnarMinus<F>& function)
+	{
+		if (function.m_f < 0)
+			out << function.m_f;
+		else if (function.m_f == 0)
+			out << 0;
+		else
+			out << "-" << function.m_f;
+		return out;
+	}
+
 	template<typename F>
 	class UnarMinus : public functions::Abstract
 	{
@@ -25,6 +39,8 @@ namespace operations  // Ещё немножко таких namespace-ов
 
 			return -f;
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, UnarMinus<F>& function);
 
 		F m_f;  // Переменные
 

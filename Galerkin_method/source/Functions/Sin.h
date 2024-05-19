@@ -5,6 +5,14 @@
 
 namespace functions  // Ќу, этот класс ничем вроде как не отличаетс€ от других, рассказать о нЄм ничего нового
 {                    // не могу
+	template<typename F> class Sinus;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, Sinus<F>& function)
+	{
+		out << "sin(" << function.m_f << ")";
+		return out;
+	}
+
 	template<typename F>
 	class Sinus : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions  // Ќу, этот класс ничем вроде как не отличаетс€ от других, 
 			else
 				return sin(m_f(x));
 		}
+
+		friend std::ostream& operator << <F>(std::ostream& out, Sinus<F>& function);
 
 		F m_f;
 

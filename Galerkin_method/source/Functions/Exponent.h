@@ -5,6 +5,14 @@
 
 namespace functions // Ну тут уж слов нет
 {
+	template<typename F> class Exponent;
+
+	template<typename F> std::ostream& operator<<(std::ostream& out, Exponent<F>& function)
+	{
+		out << "exp(" << function.m_base << ", " << function.m_f << ")";
+		return out;
+	}
+
 	template<typename F>  // Вроде тоже всё ясно
 	class Exponent : public functions::Abstract
 	{
@@ -22,6 +30,8 @@ namespace functions // Ну тут уж слов нет
 			else
 				return pow(m_base, m_f(x));   // используем стандартные формулы языка,
 		}								  // мы што умные штоли с нуля ВСЁ писать :D
+
+		friend std::ostream& operator << <F>(std::ostream& out, Exponent<F>& function);
 
 		double m_base;  // здесь основание double
 		F m_f;          // А вот здесь будет наш тип F (предположительно какая-то функция)

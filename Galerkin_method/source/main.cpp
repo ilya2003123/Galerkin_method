@@ -1,20 +1,19 @@
 #pragma warning(disable: 26451)
 
-#include <iostream>
 //#include <io.h> 
 //#include <fcntl.h>
 #include <string>
-#include <vector>
 #include <iomanip>
 //#include "Functions/functions.h"
 //#include "Operations/operations.h"
 //#include "Utils/Utils.h"
 //#include "Derivative/derivative.h"
 //#include "test/exmain.h"
-#include "Equation/Coefficient.h"
 //#include <iomanip> - для вывода, можно отрегулировать сколько знаков после запятой выводится!
 #include<typeinfo>
-
+#include<iostream>
+#include"SolutionDifferentialEquation/solution.h"
+#include"rightSide/coefficientRightSide.h"
 //using namespace utils;  // Просто потому что надо! :D
 
 
@@ -113,8 +112,25 @@ int main()
 	int m;
 	std::cin >> m;
 
-	Coefficient(m);
-	
+	FFunction f;
+	fillRightFunction(f);
+
+	std::vector<std::vector<double>> t = solution(m, f).first.second;
+	std::vector<std::vector<double>> systemCoeff = solution(m, f).first.first;
+	std::vector<std::vector<constant>> system = solution(m, f).second;
+
+	UFunction u;
+	fillUFunction(u);
+
+	std::vector coefficient = coefficientRightSideForIntegral(m, u, f);
+
+	std::endl(std::cout);
+
+
+
+
+	/*std::vector<double> solveSystemEquation =*/
+
 	/*auto f = Sin(X);
 	auto i = integrateRectangles(f);
 	std::cout << i;*/

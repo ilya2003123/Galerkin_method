@@ -3,6 +3,18 @@
 #include <functional>
 #include "cap.h"
 
+struct FFunction
+{
+    std::vector<double> x_values;  // коэффициенты перед x
+    std::vector<double> t_values;  // коэффициенты перед t;
+};
+
+struct RightFunction
+{
+    std::vector<double> t_values;
+    std::vector<double> c_values;
+};
+
 // Структура, представляющая квадратичную кусочную функцию
 struct PiecewiseQuadraticFunction
 {
@@ -80,4 +92,7 @@ struct PiecewiseLinearFunction
 };
 // Функция для умножения двух линейных кусочных функций и записи результата в квадратичную кусочную функцию
 PiecewiseQuadraticFunction multiplyPiecewiseLinearFunctions(const PiecewiseLinearFunction& w1, const PiecewiseLinearFunction& w2, int i, int j);
-void Coefficient(int m);
+std::pair<std::vector<double>, std::vector<RightFunction>> coefficient(int m, FFunction rf);
+void fillRightFunction(FFunction& f);
+std::vector<RightFunction> integrateRightFunction(FFunction f, Cap** cap, int m);
+std::vector<FFunction> multiply(FFunction f, Cap** cap, int m);
